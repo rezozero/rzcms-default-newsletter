@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>{{ head.subject }}</title>
+	{% include 'includes/styles.html.twig' %}
+</head>
+<body>
+	{% block content %}
+	<!-- Wrapper/Container Table: Use a wrapper table to control the width and the background color consistently of your email. Use this approach instead of setting attributes on the body tag. -->
+	<table cellpadding="0" cellspacing="0" border="0" id="linktowebsite">
+		<tr>
+			<td>Voir la newsletter sur <a href="{{ head.newsletterURL }}">notre site</a></td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+		<tr>
+			<td>
+				<!-- Tables are the most common way to format your email consistently. Set your table widths inside cells and in most cases reset cellpadding, cellspacing, and border to zero. Use nested tables as a way to space effectively in your message. -->
+				<table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="newsletter_classic">
+					<tr>
+						<td>
+							<table class="newsletter_header" cellpadding="0" cellspacing="0" border="0"></table>
+						</td>
+					</tr>
+					{# 
+  					 # Display each newsletter blocks
+					 #}
+					{% for nlBlock in blocks %}
+					    {{ nlBlock|raw }}
+					{% endfor %}
+					<tr>
+						<td>
+							<table class="newsletter_footer">
+								<tr><td>{{ head.newsletterFooter|markdown_unwrapped }}<a href='{{ head.baseFolder }}?{{ head.linkTrackerURL|raw }}'>{{ head.baseFolder }}</a></td></tr>
+								<tr><td class="newsletter_footer_end">Si vous ne souhaitez plus recevoir notre newsletter, <a href="{{ head.unsubscribeURL }}">désabonnez-vous.</a></td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	{% endblock %}
+	<!-- You can display a tracker image to count newsletter openings ! -->
+	<img id="tracker_image" 
+		style='display:block;border:none;width:0;height:0;' 
+		alt='tracker' 
+		src="{{ head.trackerURL|raw }}" />
+	</body>
+</html>
