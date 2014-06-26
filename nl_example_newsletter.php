@@ -29,6 +29,10 @@ $newsletterAssignation = $nl->prepareBaseAssignation( $email );
  * === Prepare HERE your blocks or newsletter data
  */
 $newsletterAssignation['node'] = $nl->getNode();
+/*
+ * If you are using sub-blocks to create repeatable content, 
+ * you must assign your blocks to loop over them
+ */
 $newsletterAssignation['blocks'] = array();
 // etc
 
@@ -45,7 +49,7 @@ if (rz_mailer::includeCssSelector()) {
 	// Be sure to create to following stylesheet in your template css folder.
 	$htmldoc->applyStylesheet(file_get_contents(dirname(__FILE__)."/css/nl_example_newsletter.css"));
 	// OR Use current file styles and remove any style tags
-	$htmldoc->applyStylesheet($htmldoc->extractStylesheets());
+	//$htmldoc->applyStylesheet($htmldoc->extractStylesheets());
 
 	$body = $htmldoc->getHTML();
 }

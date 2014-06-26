@@ -1,2 +1,37 @@
 {% extends 'base.html.twig' %}
 
+
+{% block content %}
+	<!-- Wrapper/Container Table: Use a wrapper table to control the width and the background color consistently of your email. Use this approach instead of setting attributes on the body tag. -->
+	<table cellpadding="0" cellspacing="0" border="0" id="linktowebsite">
+		<tr>
+			<td>Voir la newsletter sur <a href="{{ head.newsletterURL }}">notre site</a></td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+		<tr>
+			<td>
+				<!-- Tables are the most common way to format your email consistently. Set your table widths inside cells and in most cases reset cellpadding, cellspacing, and border to zero. Use nested tables as a way to space effectively in your message. -->
+				<table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="newsletter_classic">
+					<tr>
+						{# Link to your header image #}
+						<td><img alt="" src="{{ head.baseFolder }}templates/newsletters/img/header_image.jpg" /></td>
+					</tr>
+					<tr>
+						<td>
+							<table class="newsletter_header" cellpadding="0" cellspacing="0" border="0"></table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table class="newsletter_footer">
+								<tr><td>{{ head.newsletterFooter|markdown_unwrapped }}<a href='{{ head.baseFolder }}?{{ head.linkTrackerURL|raw }}'>{{ head.baseFolder }}</a></td></tr>
+								<tr><td class="newsletter_footer_end">Si vous ne souhaitez plus recevoir notre newsletter, <a href="{{ head.unsubscribeURL }}">désabonnez-vous.</a></td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+{% endblock %}

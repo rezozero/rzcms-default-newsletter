@@ -6,6 +6,7 @@ It uses [InlineStyle](https://github.com/christiaan/InlineStyle) library to inli
 ## Howto
 
 * Clone this repository into your `templates` folder
+* Rename repository folder as `newsletters` to let RZCMS use your templates for newsletters.
 * Create a new node-type *with newsletter option* in your RZCMS backoffice
 * Generate your newsletter template controller, you can see an example of generated controller in `nl_example_newsletter.php`
 * Create your CSS or LESS file which will be *inlined* into your newsletter HTML code, example in `css/nl_example_newsletter.css`
